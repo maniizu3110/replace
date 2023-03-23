@@ -2,7 +2,9 @@ package logic
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 const (
@@ -10,6 +12,10 @@ const (
 )
 
 func Clone(repositoryUrl string, isPrivate bool) error {
+	err := os.MkdirAll(filepath.Dir(distDir), os.ModePerm)
+	if err != nil {
+		return err
+	}
 	cmd := exec.Command("git", "clone", repositoryUrl)
 	cmd.Dir = distDir
 	if output, err := cmd.CombinedOutput(); err != nil {
