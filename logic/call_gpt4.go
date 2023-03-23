@@ -32,7 +32,6 @@ func CallGPT4(messages []string) ([]string, error) {
 	}
 	userMessages = append([]map[string]string{{"role": "system", "content": systemMessage}}, userMessages...)
 
-	fmt.Println(userMessages)
 	requestPayload := map[string]interface{}{
 		"model":             "gpt-4",
 		"messages":          userMessages,
